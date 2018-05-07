@@ -12,9 +12,12 @@ public class CountDownActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_count_down);
+
         ProgressBar progressBar = findViewById(R.id.progress_bar);
         TextView textView = findViewById(R.id.progress_text);
+
         CountDownProgressBar.Builder builder = new CountDownProgressBar.Builder(progressBar,textView);
+
         builder.afterProgressDone(new CountDownProgressBar.Callback() {
             @Override
             public void callback() {

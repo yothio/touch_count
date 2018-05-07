@@ -113,7 +113,6 @@ public class CountDownProgressBar extends AsyncTask<Integer, Integer, Integer> {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-
                         }
                     }, delay);
                 }
