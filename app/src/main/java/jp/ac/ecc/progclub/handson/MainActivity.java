@@ -21,6 +21,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CountDownActivity.class);
 
+        Button startBtn = findViewById(R.id.start_button);
+        Button rankingBtn = findViewById(R.id.ranking_button);
+
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+            }
+        });
+
+        rankingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LankingActivity.class);
                 startActivity(intent);
             }
         });
