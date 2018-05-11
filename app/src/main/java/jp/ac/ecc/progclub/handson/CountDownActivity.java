@@ -1,8 +1,8 @@
 package jp.ac.ecc.progclub.handson;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,12 +21,15 @@ public class CountDownActivity extends AppCompatActivity {
         builder.afterProgressDone(new CountDownProgressBar.Callback() {
             @Override
             public void callback() {
-
+                // カウントダウン後の処理
             }
-        }, 3000).after(new CountDownProgressBar.Callback() {
+        }, 2).after(new CountDownProgressBar.Callback() {
             @Override
             public void callback() {
+                // 上のコールバックの後に行う処理
+                Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                startActivity(intent);
             }
-        },3000).build();
+        },1000).build();
     }
 }
