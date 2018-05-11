@@ -26,10 +26,10 @@ public class ResultActivity extends AppCompatActivity {
                 String name = nameTV.getText().toString();   // 名前
 
                 SharedPreferences sharedPreferences =
-                        getSharedPreferences("result", Context.MODE_PRIVATE);
+                        getSharedPreferences(getString(R.string.save_resultName), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("resultName", name);
-                editor.putInt("resultClickNum", clickNum);
+                editor.putString(getString(R.string.save_resultKey_name), name);
+                editor.putInt(getString(R.string.save_resultKey_clickNum), clickNum);
                 editor.apply();
             }
         });
