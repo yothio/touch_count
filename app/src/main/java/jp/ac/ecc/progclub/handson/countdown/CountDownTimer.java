@@ -10,17 +10,21 @@ public class CountDownTimer extends Thread {
     long millis = 0L;   //カウントダウンする時間ms
     long handlerInterval = 0L;  //カウントダウン間隔ms
     Handler handler;    //紐付けされた送信するハンドラ
+    private Callback callback;
 
     /**
      * カウントダウンタイマーをインスタンス化します
      * @param millis    カウントする時間（ミリ秒）
      * @param handlerInterval   カウントダウン間隔（ミリ秒）
+     * @param callback  タイマー終了後に行うcallback
      */
-    public CountDownTimer(Handler handler, long millis, long handlerInterval) {
+    public CountDownTimer(Handler handler, long millis, long handlerInterval, Callback callback) {
         super();
+        this.callback = callback;
         this.handler = handler;
         setTimer(millis, handlerInterval);
     }
+
 
     /**
      * タイマーをセットします。
@@ -80,5 +84,12 @@ public class CountDownTimer extends Thread {
         msg = Message.obtain();
         msg.setData(data);
         handler.sendMessage(msg);
+
+        callback.callback();
+    }
+
+    // Timer更新情報送信後用のCallback
+    public interface Callback{
+        void callback();
     }
 }
