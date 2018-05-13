@@ -1,6 +1,7 @@
 package jp.ac.ecc.progclub.handson;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +49,9 @@ public class ResultActivity extends AppCompatActivity {
                 editor.putString(save_resultKey_name, name);
                 editor.putInt(save_resultKey_clickNum, count);
                 editor.apply();
+
+                Intent intent = new Intent(getApplicationContext(), RankingActivity.class);
+                startActivity(intent);
             }
         });
     }
