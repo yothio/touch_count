@@ -15,21 +15,19 @@ import java.util.Map;
 public class RankingActivity extends AppCompatActivity {
 
     ListView rankinglist;
-    Button rankbutton;
-    ImageView rankimage;
-
+    Button rankButton;
+    ImageView rankImage;
     SharedPreferences sp;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ranking);
+        setContentView(R.layout.activity_ranking);
 
-        rankbutton = (Button) findViewById(R.id.rankbutton);
-        rankinglist = (ListView) findViewById(R.id.ranklist);
-        rankimage = (ImageView) findViewById(R.id.rankimage);
-
+        rankButton = findViewById(R.id.rank_button);
+        rankinglist = findViewById(R.id.rank_listview);
+        rankImage = findViewById(R.id.rank_imageview);
     }
 
 
