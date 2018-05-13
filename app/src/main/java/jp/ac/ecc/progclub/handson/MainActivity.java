@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import jp.ac.ecc.progclub.handson.countdown.CountDownActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
