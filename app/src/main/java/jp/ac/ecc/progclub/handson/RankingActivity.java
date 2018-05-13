@@ -10,10 +10,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
-public class LankingActivity extends AppCompatActivity {
+public class RankingActivity extends AppCompatActivity {
 
     ListView rankinglist;
     Button rankbutton;
@@ -54,7 +53,7 @@ public class LankingActivity extends AppCompatActivity {
 
         }
 
-        Collections.sort(result,new RankCompreter());
+        Collections.sort(result,new RankComparator());
 
         return result;
     }
