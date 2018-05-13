@@ -1,4 +1,4 @@
-package jp.ac.ecc.progclub.handson;
+package jp.ac.ecc.progclub.handson.countdown;
 
 import android.os.AsyncTask;
 import android.os.Handler;

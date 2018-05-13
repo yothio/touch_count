@@ -1,41 +1,46 @@
-package jp.ac.ecc.progclub.handson;
+package jp.ac.ecc.progclub.handson.countdown;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import jp.ac.ecc.progclub.handson.countdown.CountDownTimer;
-import jp.ac.ecc.progclub.handson.countdown.TimerHandler;
+import jp.ac.ecc.progclub.handson.BaseActivity;
+import jp.ac.ecc.progclub.handson.R;
+import jp.ac.ecc.progclub.handson.ResultActivity;
+import jp.ac.ecc.progclub.handson.TouchFrameLayout;
 
 public class CountDownActivity extends BaseActivity {
 
+    // tap回数
     private int count = 0;
 
-    private ProgressBar progressBar;
+    // 開始前のアニメーションタイマ
     private TextView textView;
+    // tap回数の表示領域
     private TextView tapCountText;
     private TextView timerCountText;
+    // tap領域
     private TouchFrameLayout frameLayout;
+    private ProgressBar progressBar;
 
-
+    public static final String COUNT_KEY = "count_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_count_down);
 
+        // レイアウトファイルとの結びつけ
         progressBar = findViewById(R.id.progress_bar);
         textView = findViewById(R.id.progress_text);
         tapCountText = findViewById(R.id.tap_count_textview);
         timerCountText = findViewById(R.id.timer_textview);
         frameLayout = findViewById(R.id.tap_area_frame);
+
+        // tap時の処理を設定
         frameLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -53,7 +58,6 @@ public class CountDownActivity extends BaseActivity {
 
         // ゲーム開始のカウントダウンアニメーションのviewを渡す
         CountDownProgressBar.Builder builder = new CountDownProgressBar.Builder(progressBar,textView);
-
 
         builder.afterProgressDone(new CountDownProgressBar.Callback() {
             @Override
@@ -79,7 +83,11 @@ public class CountDownActivity extends BaseActivity {
                 CountDownTimer countDownTimer = new CountDownTimer(handler, 10000L, 16L, new CountDownTimer.Callback() {
                     @Override
                     public void callback() {
+
+                        // 画面遷移処理
                         Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                        // タップ回数を渡す
+                        intent.putExtra(COUNT_KEY,count);
                         startActivity(intent);
                     }
                 });
