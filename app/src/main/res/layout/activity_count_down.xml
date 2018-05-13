@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="jp.ac.ecc.progclub.handson.CountDownActivity">
+    tools:context="jp.ac.ecc.progclub.handson.countdown.CountDownActivity">
 
     <TextView
         android:id="@+id/progress_text"
