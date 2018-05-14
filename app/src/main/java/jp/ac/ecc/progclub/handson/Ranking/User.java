@@ -1,11 +1,11 @@
-package jp.ac.ecc.progclub.handson;
+package jp.ac.ecc.progclub.handson.Ranking;
 
 public class User {
 
-    public String name;
-    public int tappoint;
+    private String name;//名前
+    private int tappoint;//ポイント
 
-    User(String name, int tappoint) {
+   public User(String name, int tappoint) {
         this.name = name;
         this.tappoint = tappoint;
     }

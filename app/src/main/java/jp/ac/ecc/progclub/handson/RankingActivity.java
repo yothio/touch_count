@@ -13,6 +13,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
+
+import jp.ac.ecc.progclub.handson.Ranking.RankCompreter;
+import jp.ac.ecc.progclub.handson.Ranking.User;
 
 public class RankingActivity extends AppCompatActivity {
 
@@ -33,10 +37,11 @@ public class RankingActivity extends AppCompatActivity {
         rankImage = (ImageView) findViewById(R.id.rankimage);
 
 
-        ArrayList al = getRanking();
+        ArrayList al = getRanking();//ランキング取得
 
-        setRankinglist(al, rankingList);
+        setRankinglist(al, rankingList);//ランキング表示
 
+        //ホームへ
         rankButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,20 +51,18 @@ public class RankingActivity extends AppCompatActivity {
         });
     }
 
+    //リストにランキング表示
     private void setRankinglist(ArrayList list, ListView listView) {
 
-        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.ranklist, list);
-        //ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, R.layout.ranklist, new String[]{"name", "point"}, new int[]{R.id.name, R.id.point});
-      //  ArrayAdapter<User> arrayAdapter =  new ArrayAdapter<User>(this, R.layout.ranklist, list);
-        ListAdapter arrayAdapter = new jp.ac.ecc.progclub.handson.ListAdapter(this,list);
+        ListAdapter arrayAdapter = new jp.ac.ecc.progclub.handson.Ranking.ListAdapter(this, list);
         listView.setAdapter(arrayAdapter);
     }
 
-
+    //ソートされたランキング取得
     private ArrayList getRanking() {
 
         ArrayList<User> result = new ArrayList<User>();
-/*        sp = getSharedPreferences("Ranking", MODE_PRIVATE);
+        sp = getSharedPreferences("result", MODE_PRIVATE);
         Map<String, ?> rankmap = sp.getAll();
         User user;
 
@@ -74,34 +77,8 @@ public class RankingActivity extends AppCompatActivity {
 
             result.add(user);
 
-        }*/
-        User user = new User("10", 10);
-        result.add(user);
-        user = new User("11", 999);
-        result.add(user);
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",650));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",596130));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-        result.add(new User("fawfa",0));
-
-
-
+        }
+//ランキングソート
         Collections.sort(result, new RankCompreter());
 
 

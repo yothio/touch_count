@@ -1,4 +1,4 @@
-package jp.ac.ecc.progclub.handson;
+package jp.ac.ecc.progclub.handson.Ranking;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import jp.ac.ecc.progclub.handson.R;
-import jp.ac.ecc.progclub.handson.User;
 
 public class ListAdapter extends ArrayAdapter<User> {
+
     private TextView nameText;
     private TextView pointText;
 
@@ -27,12 +27,12 @@ public class ListAdapter extends ArrayAdapter<User> {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.ranklist, null);
         }
-        final User item = this.getItem(position);
-        if (item != null) {
+        final User user = this.getItem(position);
+        if (user != null) {
             nameText = (TextView) convertView.findViewById(R.id.name);
-            nameText.setText(item.getName());
+            nameText.setText(user.getName());
             pointText = (TextView) convertView.findViewById(R.id.point);
-            pointText.setText(String.valueOf(item.getTappoint()));
+            pointText.setText(String.valueOf(user.getTappoint()));
         }
         return convertView;
     }
