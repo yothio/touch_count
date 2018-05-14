@@ -18,7 +18,7 @@ import java.util.Map;
 import jp.ac.ecc.progclub.handson.Ranking.RankCompreter;
 import jp.ac.ecc.progclub.handson.Ranking.User;
 
-public class RankingActivity extends AppCompatActivity {
+public class RankingActivity extends BaseActivity {
 
     ListView rankingList;
     Button rankButton;
@@ -47,6 +47,7 @@ public class RankingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
