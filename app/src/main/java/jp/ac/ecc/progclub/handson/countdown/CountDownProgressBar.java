@@ -1,4 +1,4 @@
-package jp.ac.ecc.progclub.handson;
+package jp.ac.ecc.progclub.handson.countdown;
 
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -36,7 +36,7 @@ public class CountDownProgressBar extends AsyncTask<Integer, Integer, Integer> {
     @Override
     protected Integer doInBackground(Integer... params) {
         Log.d("ProgressAsyncTask", "doInBackGround");
-        for (int count = 0; count <= duration; count++) {
+        for (int count = 0; count < duration; count++) {
             try {
                 Thread.sleep(1000);
                 publishProgress(count);
@@ -101,7 +101,7 @@ public class CountDownProgressBar extends AsyncTask<Integer, Integer, Integer> {
             return this;
         }
 
-        public Builder after(@NonNull Callback callback1, final long delay){
+        public Builder after(@NonNull final Callback callback1, final long delay){
             if (callback == null)
                 throw new IllegalArgumentException("afterProgressDone must be called first!");
 
@@ -113,6 +113,7 @@ public class CountDownProgressBar extends AsyncTask<Integer, Integer, Integer> {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            callback1.callback();
                         }
                     }, delay);
                 }

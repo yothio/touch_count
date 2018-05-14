@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CountDownActivity"/>
+        <activity android:name=".countdown.CountDownActivity"/>
         <activity android:name=".ResultActivity"/>
         <activity android:name=".RankingActivity"/>
     </application>

@@ -1,35 +1,61 @@
 package jp.ac.ecc.progclub.handson;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ResultActivity extends AppCompatActivity {
+import static jp.ac.ecc.progclub.handson.countdown.CountDownActivity.COUNT_KEY;
+
+public class ResultActivity extends BaseActivity {
+
+    static final String save_resultName = "result";                   // 保存オブジェクト名
+    static final String save_resultKey_name = "resultName";          // 入力した名前の保存キー名
+    static final String save_resultKey_clickNum = "resultClickNum"; // 　クリック数の保存キー名
+
+    TextView nameText;
+    TextView countText;
+    Button nextBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        final TextView nameTV = findViewById(R.id.NameEditText);   // クリックした回数
-        final TextView countTV = findViewById(R.id.NumTextView);  // カウント回数を表示したラベル
-        final Button button = findViewById(R.id.DecButton);
+        nameText = findViewById(R.id.NameEditText);    // 名前入力用テキストボックス
+        countText = findViewById(R.id.NumTextView);    // カウント回数を表示したラベル
+        nextBtn = findViewById(R.id.DecButton);        // [決定]ボタン
 
-        button.setOnClickListener(new View.OnClickListener() {
+        // 前画面でクリックした数を取得
+        final int count = getIntent().getIntExtra(COUNT_KEY,0);
+
+        // カウントテキストにセット
+        countText.setText(String.valueOf(count));
+
+        // データ保存してランキング画面へ
+        nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int clickNum = Integer.parseInt(countTV.getText().toString());  // クリック数
-                String name = nameTV.getText().toString();   // 名前
+                String name = countText.getText().toString();   // 名前
 
+                // クリック数と名前を保存
                 SharedPreferences sharedPreferences =
-                        getSharedPreferences("result", Context.MODE_PRIVATE);
+                        getSharedPreferences(save_resultName, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt(name, count);
                 editor.apply();
+
+                // ランキング画面に移動
+                Intent intent = new Intent(getApplicationContext(), LankingActivity.class);
+                startActivity(intent);
+
+                // 戻ってくると処理が重複するので、アクティビティを終了させておく
+                // ただし、ランキング画面に移動→戻る でカウント画面から動けなくなるので対処が必要
+                // 暫定的な処理なので、必要なくなったら削除しても可
+                finish();
             }
         });
     }
