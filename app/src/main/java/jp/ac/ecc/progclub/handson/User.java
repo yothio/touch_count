@@ -10,4 +10,11 @@ public class User {
         this.tappoint = tappoint;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getTappoint() {
+        return tappoint;
+    }
 }
