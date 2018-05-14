@@ -41,17 +41,9 @@ public class ResultActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 String name = nameText.getText().toString();   // 名前
-
-                // クリック数と名前を保存
-//                SharedPreferences sharedPreferences =
-//                        getSharedPreferences(save_resultName, Context.MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                editor.putString(save_resultKey_name, name);
-//                editor.putInt(save_resultKey_clickNum, count);
-//                editor.apply();
-
+              
+              
                 User user = new User(name, count);
-
                 DataStore.getInstance().addUser(user);
 
                 // ランキング画面に移動
