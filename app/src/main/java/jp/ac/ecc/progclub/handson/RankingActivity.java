@@ -4,17 +4,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Map;
+import java.util.List;
 
+import jp.ac.ecc.progclub.handson.Ranking.DataStore;
 import jp.ac.ecc.progclub.handson.Ranking.RankCompreter;
 import jp.ac.ecc.progclub.handson.Ranking.User;
 
@@ -37,7 +36,7 @@ public class RankingActivity extends BaseActivity {
         rankImage = (ImageView) findViewById(R.id.rankimage);
 
 
-        ArrayList al = getRanking();//ランキング取得
+        List<User> al = getRanking();//ランキング取得
 
         setRankinglist(al, rankingList);//ランキング表示
 
@@ -53,32 +52,34 @@ public class RankingActivity extends BaseActivity {
     }
 
     //リストにランキング表示
-    private void setRankinglist(ArrayList list, ListView listView) {
+    private void setRankinglist(List<User> list, ListView listView) {
 
         ListAdapter arrayAdapter = new jp.ac.ecc.progclub.handson.Ranking.ListAdapter(this, list);
         listView.setAdapter(arrayAdapter);
     }
 
     //ソートされたランキング取得
-    private ArrayList getRanking() {
+    private List<User> getRanking() {
 
-        ArrayList<User> result = new ArrayList<User>();
-        sp = getSharedPreferences("result", MODE_PRIVATE);
-        Map<String, ?> rankmap = sp.getAll();
-        User user;
+//        ArrayList<User> result = new ArrayList<User>();
+//        sp = getSharedPreferences("result", MODE_PRIVATE);
+//        Map<String, ?> rankmap = sp.getAll();
+//        User user;
+//
+//
+//        for (Map.Entry<String, ?> entry : rankmap.entrySet()) {
+//
+//            String key = entry.getKey();
+//            Object obj = entry.getValue();
+//
+//            int point = Integer.parseInt(obj.toString());
+//            user = new User(key, point);
+//
+//            result.add(user);
+//
+//        }
 
-
-        for (Map.Entry<String, ?> entry : rankmap.entrySet()) {
-
-            String key = entry.getKey();
-            Object obj = entry.getValue();
-
-            int point = Integer.parseInt(obj.toString());
-            user = new User(key, point);
-
-            result.add(user);
-
-        }
+        List<User> result = DataStore.getInstance().getUserList();
 //ランキングソート
         Collections.sort(result, new RankCompreter());
 

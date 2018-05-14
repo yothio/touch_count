@@ -1,8 +1,6 @@
 package jp.ac.ecc.progclub.handson;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spanned;
@@ -11,6 +9,9 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import jp.ac.ecc.progclub.handson.Ranking.DataStore;
+import jp.ac.ecc.progclub.handson.Ranking.User;
 
 import static jp.ac.ecc.progclub.handson.countdown.CountDownActivity.COUNT_KEY;
 
@@ -43,15 +44,10 @@ public class ResultActivity extends BaseActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = countText.getText().toString();   // 名前
-
-                // クリック数と名前を保存
-                SharedPreferences sharedPreferences =
-                        getSharedPreferences(save_resultName, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(save_resultKey_name, name);
-                editor.putInt(save_resultKey_clickNum, count);
-                editor.apply();
+                String name = nameText.getText().toString();   // 名前
+              
+                User user = new User(name, count);
+                DataStore.getInstance().addUser(user);
 
                 // ランキング画面に移動
                 Intent intent = new Intent(getApplicationContext(), RankingActivity.class);
