@@ -1,6 +1,7 @@
 package jp.ac.ecc.progclub.handson;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -47,6 +48,15 @@ public class ResultActivity extends BaseActivity {
                 editor.putString(save_resultKey_name, name);
                 editor.putInt(save_resultKey_clickNum, count);
                 editor.apply();
+
+                // ランキング画面に移動
+                Intent intent = new Intent(getApplicationContext(), LankingActivity.class);
+                startActivity(intent);
+
+                // 戻ってくると処理が重複するので、アクティビティを終了させておく
+                // ただし、ランキング画面に移動→戻る でカウント画面から動けなくなるので対処が必要
+                // 暫定的な処理なので、必要なくなったら削除しても可
+                finish();
             }
         });
     }
