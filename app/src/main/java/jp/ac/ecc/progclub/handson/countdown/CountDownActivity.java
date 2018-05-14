@@ -25,6 +25,7 @@ public class CountDownActivity extends BaseActivity {
     // tap領域
     private TouchFrameLayout frameLayout;
     private ProgressBar progressBar;
+    private ProgressBar tapTimerProgressBar;
 
     public static final String COUNT_KEY = "count_key";
 
@@ -39,6 +40,7 @@ public class CountDownActivity extends BaseActivity {
         tapCountText = findViewById(R.id.tap_count_textview);
         timerCountText = findViewById(R.id.timer_textview);
         frameLayout = findViewById(R.id.tap_area_frame);
+        tapTimerProgressBar = findViewById(R.id.tapCountProgressBar);
 
         // tap時の処理を設定
         frameLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -52,9 +54,10 @@ public class CountDownActivity extends BaseActivity {
         });
 
         // 制限時間・タップ数を表示・タッチ領域の非表示
-        frameLayout.setVisibility(View.INVISIBLE);
         tapCountText.setVisibility(View.INVISIBLE);
+        tapTimerProgressBar.setVisibility(View.INVISIBLE);
         timerCountText.setVisibility(View.INVISIBLE);
+        frameLayout.setVisibility(View.INVISIBLE);
 
         // ゲーム開始のカウントダウンアニメーションのviewを渡す
         CountDownProgressBar.Builder builder = new CountDownProgressBar.Builder(progressBar,textView);
@@ -75,15 +78,17 @@ public class CountDownActivity extends BaseActivity {
 
                 // 制限時間・タップ数を表示・タッチ領域の表示
                 tapCountText.setVisibility(View.VISIBLE);
+                tapTimerProgressBar.setVisibility(View.VISIBLE);
                 timerCountText.setVisibility(View.VISIBLE);
                 frameLayout.setVisibility(View.VISIBLE);
 
+
+                View[] views = {tapTimerProgressBar, timerCountText};
                 // 制限時間用のタイマーの設定
-                TimerHandler handler = new TimerHandler(timerCountText);
+                TimerHandler handler = new TimerHandler(views);
                 CountDownTimer countDownTimer = new CountDownTimer(handler, 10000L, 16L, new CountDownTimer.Callback() {
                     @Override
                     public void callback() {
-
                         // 画面遷移処理
                         Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
                         // タップ回数を渡す
