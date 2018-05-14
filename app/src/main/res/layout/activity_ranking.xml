@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    >
 
 
     <ImageView
@@ -28,7 +30,9 @@
         android:layout_marginBottom="8dp"
         android:cacheColorHint="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/rankbutton"
-        app:layout_constraintTop_toBottomOf="@id/rankimage" />
+        app:layout_constraintTop_toBottomOf="@id/rankimage"
+
+        />
 
     <Button
         android:id="@+id/rankbutton"
