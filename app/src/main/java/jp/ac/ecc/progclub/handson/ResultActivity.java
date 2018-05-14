@@ -28,8 +28,7 @@ public class ResultActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences =
                         getSharedPreferences("result", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("resultName", name);
-                editor.putInt("resultClickNum", clickNum);
+                editor.putInt(name, count);
                 editor.apply();
             }
         });
