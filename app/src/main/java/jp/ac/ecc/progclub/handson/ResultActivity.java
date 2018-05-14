@@ -1,8 +1,8 @@
 package jp.ac.ecc.progclub.handson;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import static jp.ac.ecc.progclub.handson.countdown.CountDownActivity.COUNT_KEY;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends BaseActivity {
 
     static final String save_resultName = "result";                   // 保存オブジェクト名
     static final String save_resultKey_name = "resultName";          // 入力した名前の保存キー名
@@ -48,6 +48,15 @@ public class ResultActivity extends AppCompatActivity {
                 editor.putString(save_resultKey_name, name);
                 editor.putInt(save_resultKey_clickNum, count);
                 editor.apply();
+
+                // ランキング画面に移動
+                Intent intent = new Intent(getApplicationContext(), LankingActivity.class);
+                startActivity(intent);
+
+                // 戻ってくると処理が重複するので、アクティビティを終了させておく
+                // ただし、ランキング画面に移動→戻る でカウント画面から動けなくなるので対処が必要
+                // 暫定的な処理なので、必要なくなったら削除しても可
+                finish();
             }
         });
     }
