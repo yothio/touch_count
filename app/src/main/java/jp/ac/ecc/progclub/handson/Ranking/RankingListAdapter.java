@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jp.ac.ecc.progclub.handson.R;
 
@@ -18,7 +19,7 @@ public class ListAdapter extends ArrayAdapter<User> {
 
     private LayoutInflater mInflater;
 
-    public ListAdapter(Context context, ArrayList<User> users) {
+    public ListAdapter(Context context, List<User> users) {
         super(context, 0, users);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
