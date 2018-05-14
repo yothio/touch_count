@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         rankingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LankingActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RankingActivity.class);
                 startActivity(intent);
             }
         });
