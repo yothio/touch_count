@@ -45,8 +45,7 @@ public class ResultActivity extends BaseActivity {
                 SharedPreferences sharedPreferences =
                         getSharedPreferences(save_resultName, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(save_resultKey_name, name);
-                editor.putInt(save_resultKey_clickNum, count);
+                editor.putInt(name, count);
                 editor.apply();
 
                 // ランキング画面に移動
