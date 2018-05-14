@@ -15,6 +15,7 @@ import java.util.List;
 
 import jp.ac.ecc.progclub.handson.Ranking.DataStore;
 import jp.ac.ecc.progclub.handson.Ranking.RankCompreter;
+import jp.ac.ecc.progclub.handson.Ranking.RankingListAdapter;
 import jp.ac.ecc.progclub.handson.Ranking.User;
 
 public class RankingActivity extends BaseActivity {
@@ -22,9 +23,6 @@ public class RankingActivity extends BaseActivity {
     ListView rankingList;
     Button rankButton;
     ImageView rankImage;
-
-    SharedPreferences sp;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,33 +52,15 @@ public class RankingActivity extends BaseActivity {
     //リストにランキング表示
     private void setRankinglist(List<User> list, ListView listView) {
 
-        ListAdapter arrayAdapter = new jp.ac.ecc.progclub.handson.Ranking.ListAdapter(this, list);
+        RankingListAdapter arrayAdapter = new RankingListAdapter(this, list);
         listView.setAdapter(arrayAdapter);
     }
 
     //ソートされたランキング取得
     private List<User> getRanking() {
 
-//        ArrayList<User> result = new ArrayList<User>();
-//        sp = getSharedPreferences("result", MODE_PRIVATE);
-//        Map<String, ?> rankmap = sp.getAll();
-//        User user;
-//
-//
-//        for (Map.Entry<String, ?> entry : rankmap.entrySet()) {
-//
-//            String key = entry.getKey();
-//            Object obj = entry.getValue();
-//
-//            int point = Integer.parseInt(obj.toString());
-//            user = new User(key, point);
-//
-//            result.add(user);
-//
-//        }
-
         List<User> result = DataStore.getInstance().getUserList();
-//ランキングソート
+        //ランキングソート
         Collections.sort(result, new RankCompreter());
 
 

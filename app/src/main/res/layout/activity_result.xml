@@ -35,6 +35,7 @@
         android:id="@+id/DecButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:text="@string/labelDecButton"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
