@@ -12,14 +12,14 @@ import java.util.List;
 
 import jp.ac.ecc.progclub.handson.R;
 
-public class ListAdapter extends ArrayAdapter<User> {
+public class RankingListAdapter extends ArrayAdapter<User> {
 
     private TextView nameText;
     private TextView pointText;
 
     private LayoutInflater mInflater;
 
-    public ListAdapter(Context context, List<User> users) {
+    public RankingListAdapter(Context context, List<User> users) {
         super(context, 0, users);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
