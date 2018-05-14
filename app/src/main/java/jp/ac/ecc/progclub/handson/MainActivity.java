@@ -2,19 +2,17 @@ package jp.ac.ecc.progclub.handson;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import jp.ac.ecc.progclub.handson.countdown.CountDownActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         Button startBtn = findViewById(R.id.start_button);
         Button rankingBtn = findViewById(R.id.ranking_button);
@@ -24,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CountDownActivity.class);
                 startActivity(intent);
+                finish();
+
+
             }
         });
 
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RankingActivity.class);
                 startActivity(intent);
+                finish();
+
             }
         });
     }
