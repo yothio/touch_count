@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -45,17 +49,38 @@ public class ResultActivity extends BaseActivity {
                 SharedPreferences sharedPreferences =
                         getSharedPreferences(save_resultName, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt(name, count);
+                editor.putString(save_resultKey_name, name);
+                editor.putInt(save_resultKey_clickNum, count);
                 editor.apply();
 
                 // ランキング画面に移動
-                Intent intent = new Intent(getApplicationContext(), LankingActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RankingActivity.class);
                 startActivity(intent);
 
                 // 戻ってくると処理が重複するので、アクティビティを終了させておく
                 // ただし、ランキング画面に移動→戻る でカウント画面から動けなくなるので対処が必要
                 // 暫定的な処理なので、必要なくなったら削除しても可
                 finish();
+            }
+        });
+
+        // ここコピペ
+        // 入力されたらボタンを有効化する
+        nameText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //未入力はダメ。
+                if (TextUtils.isEmpty(s.toString())) {
+                    return;
+                }
+                // ボタンを有効化
+                nextBtn.setEnabled(true);
             }
         });
     }
