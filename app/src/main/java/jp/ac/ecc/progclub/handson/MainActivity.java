@@ -9,13 +9,15 @@ import jp.ac.ecc.progclub.handson.countdown.CountDownActivity;
 
 public class MainActivity extends BaseActivity {
 
+    // スタートするボタン
+    Button startBtn;
+    // ランキングボタン
+    Button rankingBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Button startBtn = findViewById(R.id.start_button);
-        Button rankingBtn = findViewById(R.id.ranking_button);
 
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -23,8 +25,6 @@ public class MainActivity extends BaseActivity {
                 Intent intent = new Intent(getApplicationContext(), CountDownActivity.class);
                 startActivity(intent);
                 finish();
-
-
             }
         });
 

@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import jp.ac.ecc.progclub.handson.Ranking.DataStore;
@@ -17,12 +18,11 @@ import static jp.ac.ecc.progclub.handson.countdown.CountDownActivity.COUNT_KEY;
 
 public class ResultActivity extends BaseActivity {
 
-    static final String save_resultName = "result";                   // 保存オブジェクト名
-    static final String save_resultKey_name = "resultName";          // 入力した名前の保存キー名
-    static final String save_resultKey_clickNum = "resultClickNum"; // 　クリック数の保存キー名
-
-    TextView nameText;
+    // 名前を入力するテキスト
+    EditText nameText;
+    // タップ回数を表示するテキストビュー
     TextView countText;
+    // 次へボタン
     Button nextBtn;
 
     @Override

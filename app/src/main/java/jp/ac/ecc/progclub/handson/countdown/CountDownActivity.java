@@ -23,7 +23,7 @@ public class CountDownActivity extends BaseActivity {
     private TextView tapCountText;
     private TextView timerCountText;
     // tap領域
-    private TouchFrameLayout frameLayout;
+    private TouchFrameLayout tapArea;
     private ProgressBar progressBar;
     private ProgressBar tapTimerProgressBar;
 
@@ -39,25 +39,16 @@ public class CountDownActivity extends BaseActivity {
         textView = findViewById(R.id.progress_text);
         tapCountText = findViewById(R.id.tap_count_textview);
         timerCountText = findViewById(R.id.timer_textview);
-        frameLayout = findViewById(R.id.tap_area_frame);
+        tapArea = findViewById(R.id.tap_area_frame);
         tapTimerProgressBar = findViewById(R.id.tapCountProgressBar);
 
-        // tap時の処理を設定
-        frameLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                count++;
-                tapCountText.setText(String.valueOf(count));
-                tapCountText.setTextSize(count);
-                return false;
-            }
-        });
+
 
         // 制限時間・タップ数を表示・タッチ領域の非表示
         tapCountText.setVisibility(View.INVISIBLE);
         tapTimerProgressBar.setVisibility(View.INVISIBLE);
         timerCountText.setVisibility(View.INVISIBLE);
-        frameLayout.setVisibility(View.INVISIBLE);
+        tapArea.setVisibility(View.INVISIBLE);
 
         // ゲーム開始のカウントダウンアニメーションのviewを渡す
         CountDownProgressBar.Builder builder = new CountDownProgressBar.Builder(progressBar,textView);
@@ -80,7 +71,7 @@ public class CountDownActivity extends BaseActivity {
                 tapCountText.setVisibility(View.VISIBLE);
                 tapTimerProgressBar.setVisibility(View.VISIBLE);
                 timerCountText.setVisibility(View.VISIBLE);
-                frameLayout.setVisibility(View.VISIBLE);
+                tapArea.setVisibility(View.VISIBLE);
 
 
                 View[] views = {tapTimerProgressBar, timerCountText};
